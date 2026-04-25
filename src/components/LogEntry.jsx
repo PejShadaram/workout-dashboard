@@ -20,7 +20,7 @@ export default function LogEntry({ onSave, lastEntry }) {
     onSave({
       date: form.date,
       weight:     form.weight     !== '' ? parseFloat(form.weight)     : null,
-      resting_hr: form.resting_hr !== '' ? parseInt(form.resting_hr)   : null,
+      resting_hr: form.resting_hr !== '' ? parseFloat(form.resting_hr) : null,
       sleep:      form.sleep      !== '' ? parseFloat(form.sleep)       : null,
     })
     setSaved(true)
@@ -44,8 +44,8 @@ export default function LogEntry({ onSave, lastEntry }) {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           <Field label="Weight" unit="lbs" inputMode="decimal"
             value={form.weight} onChange={v => set('weight', v)} placeholder="e.g. 198.5" color="orange" />
-          <Field label="Resting HR" unit="bpm" inputMode="numeric"
-            value={form.resting_hr} onChange={v => set('resting_hr', v)} placeholder="e.g. 62" color="red" />
+          <Field label="Resting HR" unit="bpm" inputMode="decimal"
+            value={form.resting_hr} onChange={v => set('resting_hr', v)} placeholder="e.g. 62.5" color="red" />
           <Field label="Sleep" unit="hrs" inputMode="decimal"
             value={form.sleep} onChange={v => set('sleep', v)} placeholder="e.g. 7.5" color="indigo" />
         </div>
