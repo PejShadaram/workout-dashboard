@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="112" fill="#0d1117"/>
+  <!-- Dumbbell bar -->
+  <rect x="156" y="240" width="200" height="32" rx="8" fill="#f97316"/>
+  <!-- Left weight outer -->
+  <rect x="96" y="192" width="72" height="128" rx="16" fill="#f97316"/>
+  <!-- Left weight inner highlight -->
+  <rect x="108" y="208" width="48" height="96" rx="10" fill="#fb923c"/>
+  <!-- Right weight outer -->
+  <rect x="344" y="192" width="72" height="128" rx="16" fill="#f97316"/>
+  <!-- Right weight inner highlight -->
+  <rect x="356" y="208" width="48" height="96" rx="10" fill="#fb923c"/>
+  <!-- Left collar -->
+  <rect x="148" y="212" width="24" height="88" rx="6" fill="#ea580c"/>
+  <!-- Right collar -->
+  <rect x="340" y="212" width="24" height="88" rx="6" fill="#ea580c"/>
+</svg>
