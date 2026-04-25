@@ -42,11 +42,11 @@ export default function LogEntry({ onSave, lastEntry }) {
 
       <form onSubmit={handleSubmit} className="p-8 space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-          <Field label="Weight" unit="lbs" type="number" step="0.1" min="100" max="400"
+          <Field label="Weight" unit="lbs" inputMode="decimal"
             value={form.weight} onChange={v => set('weight', v)} placeholder="e.g. 198.5" color="orange" />
-          <Field label="Resting HR" unit="bpm" type="number" step="1" min="30" max="120"
+          <Field label="Resting HR" unit="bpm" inputMode="numeric"
             value={form.resting_hr} onChange={v => set('resting_hr', v)} placeholder="e.g. 62" color="red" />
-          <Field label="Sleep" unit="hrs" type="number" step="0.5" min="0" max="14"
+          <Field label="Sleep" unit="hrs" inputMode="decimal"
             value={form.sleep} onChange={v => set('sleep', v)} placeholder="e.g. 7.5" color="indigo" />
         </div>
 
