@@ -46,6 +46,34 @@ const TABS = [
   },
 ]
 
+function DesktopNav({ tab, setTab }) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  useState(() => {
+    const mq = window.matchMedia('(max-width: 767px)')
+    const handler = (e) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  })
+  if (isMobile) return null
+  return (
+    <nav style={{ display: 'flex' }}>
+      {TABS.map(t => (
+        <button
+          key={t.id}
+          onClick={() => setTab(t.id)}
+          className={`px-6 py-5 text-sm font-medium border-b-2 transition-all cursor-pointer -mb-px whitespace-nowrap ${
+            tab === t.id
+              ? 'border-orange-500 text-orange-400'
+              : 'border-transparent text-slate-500 hover:text-slate-300 hover:border-white/20'
+          }`}
+        >
+          {t.label}
+        </button>
+      ))}
+    </nav>
+  )
+}
+
 function daysSince(dateStr) {
   return Math.floor((new Date() - new Date(dateStr)) / 86400000)
 }
@@ -62,31 +90,17 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#0d1117] text-[#e6edf3]">
 
-      {/* Header — desktop only */}
+      {/* Header */}
       <div className="bg-[#161b22] border-b border-white/8 sticky top-0 z-10 shadow-lg shadow-black/20">
-        <div className="max-w-6xl mx-auto px-8">
-          <div className="flex items-center justify-between py-5">
+        <div className="max-w-6xl mx-auto px-6 md:px-8">
+          <div className="flex items-center justify-between" style={{ minHeight: 64 }}>
             <div>
-              <h1 className="text-xl font-bold text-white tracking-tight">Workout Dashboard</h1>
-              <p className="text-sm text-slate-500 mt-0.5">Day {days} · Circuit + HIIT · 5×/week</p>
+              <h1 className="text-lg md:text-xl font-bold text-white tracking-tight">Workout Dashboard</h1>
+              <p className="text-xs md:text-sm text-slate-500">Day {days} · Circuit + HIIT · 5×/week</p>
             </div>
 
-            {/* Desktop top tabs */}
-            <nav className="hidden md:flex">
-              {TABS.map(t => (
-                <button
-                  key={t.id}
-                  onClick={() => setTab(t.id)}
-                  className={`px-6 py-5 text-sm font-medium border-b-2 transition-all cursor-pointer -mb-px whitespace-nowrap ${
-                    tab === t.id
-                      ? 'border-orange-500 text-orange-400'
-                      : 'border-transparent text-slate-500 hover:text-slate-300 hover:border-white/20'
-                  }`}
-                >
-                  {t.label}
-                </button>
-              ))}
-            </nav>
+            {/* Desktop top tabs — hidden on mobile via inline style + matchMedia */}
+            <DesktopNav tab={tab} setTab={setTab} />
           </div>
         </div>
       </div>
