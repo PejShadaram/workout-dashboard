@@ -18,7 +18,7 @@ function daysSince(dateStr) {
 
 export default function App() {
   const [tab, setTab] = useState('Overview')
-  const { data, addEntry } = useHealthData()
+  const { data, addEntry, loading } = useHealthData()
 
   const latest = data.length > 0 ? data[data.length - 1] : {}
   const days = daysSince(profile.startDate)
@@ -76,7 +76,10 @@ export default function App() {
 
         {tab === 'Health' && (
           <>
-            <LogEntry onSave={addEntry} lastEntry={latest} />
+            {loading && (
+              <div className="text-center py-12 text-slate-500 text-sm">Loading your data…</div>
+            )}
+            {!loading && <LogEntry onSave={addEntry} lastEntry={latest} />}
             <div className="grid grid-cols-3 gap-5">
               <StatCard label="Weight" value={latest.weight ? `${latest.weight} lbs` : '—'} sub={`Goal: ${profile.targetWeight} lbs`} accent />
               <StatCard label="Resting HR" value={latest.resting_hr ? `${latest.resting_hr} bpm` : '—'} sub="From Apple Watch face" />
